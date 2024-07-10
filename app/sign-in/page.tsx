@@ -7,6 +7,8 @@ import Image from "next/image";
 import { Checkbox } from "@nextui-org/checkbox";
 import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
+import {Link} from "@nextui-org/link";
+
 
 type Props = {};
 
@@ -55,17 +57,20 @@ const SignIn = (props: Props) => {
               }
               type={isVisible ? "text" : "password"}
             />
-            <div className="flex">
-              <Checkbox />
-
-              <div className="text-base text-gray-700">Remember me</div>
+            <div className="flex justify-between">
+                <div className="flex">
+                <Checkbox />
+                <div className="text-base text-gray-700">Remember me</div>
+                </div>
+              
+              <Link href="#">Forgot Password?</Link>
             </div>
 
             <Button color="secondary" className="w-full">
               Sign in
             </Button>
 
-            <div>New to our platform? Create an account</div>
+            <div>New to our platform?  <Link href="#">Create an account</Link></div>
           </div>
         </div>
       </div>
