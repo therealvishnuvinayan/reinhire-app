@@ -8,6 +8,8 @@ import { Checkbox } from "@nextui-org/checkbox";
 import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
 import { Link } from "@nextui-org/link";
+import GoogleIcon from "@/icons/GoogleIcon";
+import LinkedinIcon from "@/icons/LinkedinIcon";
 
 type Props = {};
 
@@ -35,7 +37,7 @@ const SignIn = (props: Props) => {
               Welcome to Reinhire! 👋🏻
             </div>
             <div className="flex flex-col gap-4">
-              <div className="text-sm text-gray-700 pb-2">
+              <div className="text-sm text-gray-500 pb-2">
                 Please sign-in to your account and start the adventure
               </div>
               <Input key={placement} type="email" label="Email" />
@@ -60,18 +62,34 @@ const SignIn = (props: Props) => {
               <div className="flex justify-between">
                 <div className="flex">
                   <Checkbox />
-                  <div className="text-base text-gray-700">Remember me</div>
+                  <div className="text-sm text-gray-700 flex items-center">
+                    Remember me
+                  </div>
                 </div>
 
-                <Link href="#">Forgot Password?</Link>
+                <Link href="#" className="text-sm">
+                  Forgot Password?
+                </Link>
               </div>
 
               <Button color="secondary" className="w-full">
                 Sign in
               </Button>
 
-              <div>
-                New to our platform? <Link href="#">Create an account</Link>
+              <div className="flex justify-center text-sm">
+                <span className="text-gray-500">New to our platform?</span>{" "}
+                &nbsp;{" "}
+                <Link href="#" className="text-sm">
+                  Create an account
+                </Link>
+              </div>
+
+              <div className="relative w-full">
+                <span className="sign-in-divider text-gray-500 px-4">or</span>
+              </div>
+              <div className="flex justify-center space-x-4">
+                <GoogleIcon />
+                <LinkedinIcon />
               </div>
             </div>
           </div>

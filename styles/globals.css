@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .sign-in-divider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .sign-in-divider::before,
+  .sign-in-divider::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-top: thin solid rgba(58, 53, 65, 0.12);
+    top: 50%;
+    transform: translateY(50%);
+  }
+
+  .sign-in-divider::before {
+    left: 0;
+  }
+
+  .sign-in-divider::after {
+    right: 0;
+  } 
+
+}
