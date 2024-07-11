@@ -10,15 +10,15 @@ import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
 import { Link } from "@nextui-org/link";
 import GoogleIcon from "@/icons/GoogleIcon";
 import LinkedinIcon from "@/icons/LinkedinIcon";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const SignIn = (props: Props) => {
   const placement = "inside";
-
   const [isVisible, setIsVisible] = React.useState(false);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const router = useRouter();
 
   return (
     <>
@@ -72,14 +72,14 @@ const SignIn = (props: Props) => {
                 </Link>
               </div>
 
-              <Button color="secondary" className="w-full">
-                Sign in
+              <Button onClick={() => router.push('/')} color="secondary" className="w-full">
+                SIGN IN
               </Button>
 
               <div className="flex justify-center text-sm">
                 <span className="text-gray-500">New to our platform?</span>{" "}
                 &nbsp;{" "}
-                <Link href="#" className="text-sm">
+                <Link href="signup" className="text-sm">
                   Create an account
                 </Link>
               </div>
