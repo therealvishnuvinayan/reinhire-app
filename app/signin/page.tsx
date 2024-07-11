@@ -11,14 +11,27 @@ import { Link } from "@nextui-org/link";
 import GoogleIcon from "@/icons/GoogleIcon";
 import LinkedinIcon from "@/icons/LinkedinIcon";
 import { useRouter } from "next/navigation";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-type Props = {};
+type Inputs = {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+};
 
-const SignIn = (props: Props) => {
+const SignIn = () => {
   const placement = "inside";
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log('##data', data);
 
   return (
     <>
@@ -40,42 +53,54 @@ const SignIn = (props: Props) => {
               <div className="text-sm text-gray-500 pb-2">
                 Please sign-in to your account and start the adventure
               </div>
-              <Input key={placement} type="email" label="Email" />
-              <Input
-                label="Password"
-                key={placement}
-                endContent={
-                  <button
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={toggleVisibility}
-                  >
-                    {isVisible ? (
-                      <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    ) : (
-                      <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    )}
-                  </button>
-                }
-                type={isVisible ? "text" : "password"}
-              />
-              <div className="flex justify-between">
-                <div className="flex">
-                  <Checkbox />
-                  <div className="text-sm text-gray-700 flex items-center">
-                    Remember me
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                <Input
+                  key={placement}
+                  type="email"
+                  label="Email"
+                  {...register("email")}
+                />
+                <Input
+                  label="Password"
+                  key={placement}
+                  endContent={
+                    <button
+                      className="focus:outline-none"
+                      type="button"
+                      onClick={toggleVisibility}
+                    >
+                      {isVisible ? (
+                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
+                  type={isVisible ? "text" : "password"}
+                  {...register("password")}
+                />
+                <div className="flex justify-between">
+                  <div className="flex">
+                    <Checkbox {...register("rememberMe")} />
+                    <div className="text-sm text-gray-700 flex items-center">
+                      Remember me
+                    </div>
                   </div>
+
+                  <Link href="#" className="text-sm">
+                    Forgot Password?
+                  </Link>
                 </div>
 
-                <Link href="#" className="text-sm">
-                  Forgot Password?
-                </Link>
-              </div>
-
-              <Button onClick={() => router.push('/')} color="secondary" className="w-full">
-                SIGN IN
-              </Button>
-
+                <Button
+                  onClick={() => router.push("/")}
+                  color="secondary"
+                  className="w-full"
+                  type="submit"
+                >
+                  SIGN IN
+                </Button>
+              </form>
               <div className="flex justify-center text-sm">
                 <span className="text-gray-500">New to our platform?</span>{" "}
                 &nbsp;{" "}
