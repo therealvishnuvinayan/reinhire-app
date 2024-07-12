@@ -14,7 +14,6 @@ import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
 import GoogleIcon from "@/app/icons/GoogleIcon";
 import LinkedinIcon from "@/app/icons/LinkedinIcon";
 
-
 type Inputs = {
   email: string;
   password: string;
@@ -109,15 +108,16 @@ const SignIn = () => {
               <div className="flex justify-center text-sm">
                 <span className="text-gray-500">New to our platform?</span>{" "}
                 &nbsp;{" "}
-                <Link className="text-sm" href="signup">
+                <Link className="text-sm" href="/signup/recruiter">
                   Create an account
                 </Link>
               </div>
 
               <div className="flex justify-center text-sm">
-                <span className="text-gray-500">Are you recruiter?</span> &nbsp;{" "}
-                <Link className="text-sm" href="signup">
-                  Create your recruiter account
+                <span className="text-gray-500">Are you a jobseeker?</span>{" "}
+                &nbsp;{" "}
+                <Link className="text-sm" href="/signin/jobseeker">
+                  Log in to your jobseeker account
                 </Link>
               </div>
 
