@@ -5,11 +5,11 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import Image from "next/image";
 import { Checkbox } from "@nextui-org/checkbox";
-import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
-import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
+import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
 import { Link } from "@nextui-org/link";
-import GoogleIcon from "@/icons/GoogleIcon";
-import LinkedinIcon from "@/icons/LinkedinIcon";
+import GoogleIcon from "@/app/icons/GoogleIcon";
+import LinkedinIcon from "@/app/icons/LinkedinIcon";
 import { useRouter } from "next/navigation";
 
 type Props = {};

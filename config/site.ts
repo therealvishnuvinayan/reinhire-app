@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Reinhire App",
+  description: "ReinHire - AI-Powered Job Interviews and Recruitment Solutions",
   navItems: [
     {
       label: "Home",

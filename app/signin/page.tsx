@@ -5,11 +5,11 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import Image from "next/image";
 import { Checkbox } from "@nextui-org/checkbox";
-import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
-import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
+import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
 import { Link } from "@nextui-org/link";
-import GoogleIcon from "@/icons/GoogleIcon";
-import LinkedinIcon from "@/icons/LinkedinIcon";
+import GoogleIcon from "@/app/icons/GoogleIcon";
+import LinkedinIcon from "@/app/icons/LinkedinIcon";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -31,7 +31,7 @@ const SignIn = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log('##data', data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log("##data", data);
 
   return (
     <>
@@ -53,7 +53,10 @@ const SignIn = () => {
               <div className="text-sm text-gray-500 pb-2">
                 Please sign-in to your account and start the adventure
               </div>
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-4"
+              >
                 <Input
                   key={placement}
                   type="email"
