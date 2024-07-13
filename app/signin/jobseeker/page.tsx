@@ -9,6 +9,7 @@ import { Link } from "@nextui-org/link";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
+
 import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
 import GoogleIcon from "@/app/icons/GoogleIcon";
@@ -32,7 +33,7 @@ const SignIn = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log("##data", data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log("##data", data); 
 
   return (
     <>
