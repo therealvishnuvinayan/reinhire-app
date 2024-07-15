@@ -8,14 +8,14 @@ import { Checkbox } from "@nextui-org/checkbox";
 import { Link } from "@nextui-org/link";
 import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, SubmitHandler } from "react-hook-form" 
+import { useForm, SubmitHandler } from "react-hook-form";
 import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
 import GoogleIcon from "@/app/icons/GoogleIcon";
 import LinkedinIcon from "@/app/icons/LinkedinIcon";
 import signUpSchema from "@/utils/validations/authScheme";
-import  { hash } from "bcryptjs";
-import prisma from "@/app/lib/prisma";
+import { hash } from "bcryptjs";
+import registerUser from "@/routes/api/signup";
 
 const SignUp: React.FC = () => {
   const placement = "inside";
@@ -33,19 +33,23 @@ const SignUp: React.FC = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(signUpSchema) });
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    // const hashedPassword = await hash(data.password, 10);
-    // const user = await prisma.user.create({
-    //   data: {
-    //     email: data.email,
-    //     password: hashedPassword,
-    //     role: "JOB_SEEKER",
-    //   },
-    // })
-    // return user;
-  } 
+    const hashedPassword = await hash(data.password, 10);
+    const signUpData = {
+      ...data,
+      password: hashedPassword,
+      role: "JOB_SEEKER",
+    };
+    const result = await registerUser(signUpData);
+    console.log("##result", result);
+    if (result) {
+      reset();
+      router.push("/");
+    }
+  };
 
   return (
     <>
@@ -77,9 +81,12 @@ const SignUp: React.FC = () => {
                   type="email"
                   {...register("email")}
                 />
-                {errors.email && <div className="text-xs text-danger">{errors.email.message}</div>}
+                {errors.email && (
+                  <div className="text-xs text-danger">
+                    {errors.email.message}
+                  </div>
+                )}
                 <Input
-                  key={placement}
                   endContent={
                     <button
                       className="focus:outline-none"
@@ -97,9 +104,12 @@ const SignUp: React.FC = () => {
                   type={isVisible ? "text" : "password"}
                   {...register("password")}
                 />
-                {errors.password && <div className="text-xs text-danger">{errors.password.message}</div>}
+                {errors.password && (
+                  <div className="text-xs text-danger">
+                    {errors.password.message}
+                  </div>
+                )}
                 <Input
-                  key={placement}
                   endContent={
                     // eslint-disable-next-line prettier/prettier
                     <button
@@ -119,7 +129,9 @@ const SignUp: React.FC = () => {
                   {...register("confirmPassword")}
                 />
                 {errors.confirmPassword && (
-                  <div className="text-xs text-danger">{errors.confirmPassword.message}</div>
+                  <div className="text-xs text-danger">
+                    {errors.confirmPassword.message}
+                  </div>
                 )}
                 <div className="flex justify-between">
                   <div className="flex">

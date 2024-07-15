@@ -1,5 +1,4 @@
 import prisma from "@/app/lib/prisma";
-import { hash } from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -11,11 +10,10 @@ export async function POST(req: NextRequest) {
     );
 
   try {
-    const hashedPassword = await hash(password, 10);
     const user = await prisma.user.create({
       data: {
         email,
-        password: hashedPassword,
+        password,
         role,
       },
     });
@@ -24,8 +22,9 @@ export async function POST(req: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
+    console.log("##entered catch");
     return NextResponse.json(
-      { message: "Internal server error" },
+      { message: "Internal server error", error },
       { status: 500 }
     );
   }
