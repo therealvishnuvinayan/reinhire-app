@@ -170,12 +170,12 @@ const SignUp: React.FC = () => {
                 <span className="sign-in-divider text-gray-500 px-4">or</span>
               </div>
               <div className="flex justify-center space-x-4">
-                <div
-                  onClick={() => signIn("google", { callbackUrl: "/" })}
-                  className="cursor-pointer"
-                >
-                  <GoogleIcon />
-                </div>
+              <button
+      onClick={() => signIn("google", { callbackUrl: "/" })}
+      className="cursor-pointer bg-transparent border-none"
+    >
+      <GoogleIcon />
+    </button>
                 <LinkedinIcon />
               </div>
             </div>
