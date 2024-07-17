@@ -16,6 +16,7 @@ import LinkedinIcon from "@/app/icons/LinkedinIcon";
 import signUpSchema from "@/utils/validations/authScheme";
 import { hash } from "bcryptjs";
 import registerUser from "@/routes/api/signup";
+import { signIn } from "next-auth/react";
 
 const SignUp: React.FC = () => {
   const placement = "inside";
@@ -111,7 +112,6 @@ const SignUp: React.FC = () => {
                 )}
                 <Input
                   endContent={
-                    // eslint-disable-next-line prettier/prettier
                     <button
                       className="focus:outline-none"
                       type="button"
@@ -147,12 +147,7 @@ const SignUp: React.FC = () => {
                   </div>
                 </div>
 
-                <Button
-                  className="w-full"
-                  color="secondary"
-                  // onClick={() => router.push("/")}
-                  type="submit"
-                >
+                <Button className="w-full" color="secondary" type="submit">
                   SIGN UP
                 </Button>
               </form>
@@ -167,7 +162,7 @@ const SignUp: React.FC = () => {
                 <span className="text-gray-500">Are you a recruiter?</span>
                 &nbsp; &nbsp;
                 <Link className="text-sm" href="/signup/recruiter">
-                  Sign up you recruiter account
+                  Sign up your recruiter account
                 </Link>
               </div>
 
@@ -175,7 +170,12 @@ const SignUp: React.FC = () => {
                 <span className="sign-in-divider text-gray-500 px-4">or</span>
               </div>
               <div className="flex justify-center space-x-4">
-                <GoogleIcon />
+                <div
+                  onClick={() => signIn("google", { callbackUrl: "/" })}
+                  className="cursor-pointer"
+                >
+                  <GoogleIcon />
+                </div>
                 <LinkedinIcon />
               </div>
             </div>
