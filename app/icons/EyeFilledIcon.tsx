@@ -1,6 +1,6 @@
-import React, { ReactSVG } from "react";
+import React from 'react';
 export const EyeFilledIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
-  props
+  props,
 ) => (
   <svg
     aria-hidden="true"

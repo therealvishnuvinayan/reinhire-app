@@ -14,7 +14,7 @@
 
   .sign-in-divider::before,
   .sign-in-divider::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     border-top: thin solid rgba(58, 53, 65, 0.12);
@@ -28,6 +28,5 @@
 
   .sign-in-divider::after {
     right: 0;
-  } 
-
+  }
 }

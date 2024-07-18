@@ -1,19 +1,18 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/input";
-import Image from "next/image";
-import { Checkbox } from "@nextui-org/checkbox";
-import { Link } from "@nextui-org/link";
-import { useRouter } from "next/navigation";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React from 'react';
+import { Button } from '@nextui-org/button';
+import { Input } from '@nextui-org/input';
+import Image from 'next/image';
+import { Checkbox } from '@nextui-org/checkbox';
+import { Link } from '@nextui-org/link';
+import { useRouter } from 'next/navigation';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-
-import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
-import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
-import GoogleIcon from "@/app/icons/GoogleIcon";
-import LinkedinIcon from "@/app/icons/LinkedinIcon";
+import { EyeSlashFilledIcon } from '@/app/icons/EyeSlashFilledIcon';
+import { EyeFilledIcon } from '@/app/icons/EyeFilledIcon';
+import GoogleIcon from '@/app/icons/GoogleIcon';
+import LinkedinIcon from '@/app/icons/LinkedinIcon';
 
 type Inputs = {
   email: string;
@@ -22,7 +21,7 @@ type Inputs = {
 };
 
 const SignIn = () => {
-  const placement = "inside";
+  const placement = 'inside';
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const router = useRouter();
@@ -33,7 +32,7 @@ const SignIn = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log("##data", data); 
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log('##data', data);
 
   return (
     <>
@@ -63,7 +62,7 @@ const SignIn = () => {
                   key={placement}
                   label="Email"
                   type="email"
-                  {...register("email")}
+                  {...register('email')}
                 />
                 <Input
                   key={placement}
@@ -81,12 +80,12 @@ const SignIn = () => {
                     </button>
                   }
                   label="Password"
-                  type={isVisible ? "text" : "password"}
-                  {...register("password")}
+                  type={isVisible ? 'text' : 'password'}
+                  {...register('password')}
                 />
                 <div className="flex justify-between">
                   <div className="flex">
-                    <Checkbox {...register("rememberMe")} />
+                    <Checkbox {...register('rememberMe')} />
                     <div className="text-sm text-gray-700 flex items-center">
                       Remember me
                     </div>
@@ -101,22 +100,22 @@ const SignIn = () => {
                   className="w-full"
                   color="secondary"
                   type="submit"
-                  onClick={() => router.push("/")}
+                  onClick={() => router.push('/')}
                 >
                   SIGN IN
                 </Button>
               </form>
               <div className="flex justify-center text-sm">
-                <span className="text-gray-500">New to our platform?</span>{" "}
-                &nbsp;{" "}
+                <span className="text-gray-500">New to our platform?</span>{' '}
+                &nbsp;{' '}
                 <Link className="text-sm" href="/signup/jobseeker">
                   Create an account
                 </Link>
               </div>
 
               <div className="flex justify-center text-sm">
-                <span className="text-gray-500">Are you a recruiter?</span>{" "}
-                &nbsp;{" "}
+                <span className="text-gray-500">Are you a recruiter?</span>{' '}
+                &nbsp;{' '}
                 <Link className="text-sm" href="/signin/recruiter">
                   Log in to your recruiter account
                 </Link>

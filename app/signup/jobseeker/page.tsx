@@ -1,25 +1,26 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/input";
-import Image from "next/image";
-import { Checkbox } from "@nextui-org/checkbox";
-import { Link } from "@nextui-org/link";
-import { useRouter } from "next/navigation";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
-import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
-import GoogleIcon from "@/app/icons/GoogleIcon";
-import LinkedinIcon from "@/app/icons/LinkedinIcon";
-import signUpSchema from "@/utils/validations/authScheme";
-import { hash } from "bcryptjs";
-import registerUser from "@/routes/api/signup";
-import { signIn } from "next-auth/react";
+import React from 'react';
+import { Button } from '@nextui-org/button';
+import { Input } from '@nextui-org/input';
+import Image from 'next/image';
+import { Checkbox } from '@nextui-org/checkbox';
+import { Link } from '@nextui-org/link';
+import { useRouter } from 'next/navigation';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { hash } from 'bcryptjs';
+import { signIn } from 'next-auth/react';
+
+import { EyeSlashFilledIcon } from '@/app/icons/EyeSlashFilledIcon';
+import { EyeFilledIcon } from '@/app/icons/EyeFilledIcon';
+import GoogleIcon from '@/app/icons/GoogleIcon';
+import LinkedinIcon from '@/app/icons/LinkedinIcon';
+import signUpSchema from '@/utils/validations/authScheme';
+import registerUser from '@/routes/api/signup';
 
 const SignUp: React.FC = () => {
-  const placement = "inside";
+  const placement = 'inside';
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const router = useRouter();
@@ -42,13 +43,14 @@ const SignUp: React.FC = () => {
     const signUpData = {
       ...data,
       password: hashedPassword,
-      role: "JOB_SEEKER",
+      role: 'JOB_SEEKER',
     };
     const result = await registerUser(signUpData);
-    console.log("##result", result);
+
+    console.log('##result', result);
     if (result) {
       reset();
-      router.push("/");
+      router.push('/');
     }
   };
 
@@ -80,7 +82,7 @@ const SignUp: React.FC = () => {
                   key={placement}
                   label="Email"
                   type="email"
-                  {...register("email")}
+                  {...register('email')}
                 />
                 {errors.email && (
                   <div className="text-xs text-danger">
@@ -102,8 +104,8 @@ const SignUp: React.FC = () => {
                     </button>
                   }
                   label="Password"
-                  type={isVisible ? "text" : "password"}
-                  {...register("password")}
+                  type={isVisible ? 'text' : 'password'}
+                  {...register('password')}
                 />
                 {errors.password && (
                   <div className="text-xs text-danger">
@@ -125,8 +127,8 @@ const SignUp: React.FC = () => {
                     </button>
                   }
                   label="Confirm Password"
-                  type={isVisible ? "text" : "password"}
-                  {...register("confirmPassword")}
+                  type={isVisible ? 'text' : 'password'}
+                  {...register('confirmPassword')}
                 />
                 {errors.confirmPassword && (
                   <div className="text-xs text-danger">
@@ -170,12 +172,12 @@ const SignUp: React.FC = () => {
                 <span className="sign-in-divider text-gray-500 px-4">or</span>
               </div>
               <div className="flex justify-center space-x-4">
-              <button
-      onClick={() => signIn("google", { callbackUrl: "/" })}
-      className="cursor-pointer bg-transparent border-none"
-    >
-      <GoogleIcon />
-    </button>
+                <button
+                  className="cursor-pointer bg-transparent border-none"
+                  onClick={() => signIn('google', { callbackUrl: '/' })}
+                >
+                  <GoogleIcon />
+                </button>
                 <LinkedinIcon />
               </div>
             </div>

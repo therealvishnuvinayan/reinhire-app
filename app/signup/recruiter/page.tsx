@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/input";
-import Image from "next/image";
-import { Checkbox } from "@nextui-org/checkbox";
-import { Link } from "@nextui-org/link";
-import { useRouter } from "next/navigation";
+import React from 'react';
+import { Button } from '@nextui-org/button';
+import { Input } from '@nextui-org/input';
+import Image from 'next/image';
+import { Checkbox } from '@nextui-org/checkbox';
+import { Link } from '@nextui-org/link';
+import { useRouter } from 'next/navigation';
 
-import { EyeSlashFilledIcon } from "@/app/icons/EyeSlashFilledIcon";
-import { EyeFilledIcon } from "@/app/icons/EyeFilledIcon";
-import GoogleIcon from "@/app/icons/GoogleIcon";
-import LinkedinIcon from "@/app/icons/LinkedinIcon";
+import { EyeSlashFilledIcon } from '@/app/icons/EyeSlashFilledIcon';
+import { EyeFilledIcon } from '@/app/icons/EyeFilledIcon';
+import GoogleIcon from '@/app/icons/GoogleIcon';
+import LinkedinIcon from '@/app/icons/LinkedinIcon';
 
 const SignUp = () => {
-  const placement = "inside";
+  const placement = 'inside';
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const router = useRouter();
@@ -56,7 +56,7 @@ const SignUp = () => {
                   </button>
                 }
                 label="Password"
-                type={isVisible ? "text" : "password"}
+                type={isVisible ? 'text' : 'password'}
               />
               <Input
                 key={placement}
@@ -74,7 +74,7 @@ const SignUp = () => {
                   </button>
                 }
                 label="Confirm Password"
-                type={isVisible ? "text" : "password"}
+                type={isVisible ? 'text' : 'password'}
               />
               <div className="flex justify-between">
                 <div className="flex">
@@ -93,7 +93,7 @@ const SignUp = () => {
               <Button
                 className="w-full"
                 color="secondary"
-                onClick={() => router.push("/")}
+                onClick={() => router.push('/')}
               >
                 SIGN UP
               </Button>
