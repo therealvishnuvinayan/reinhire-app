@@ -108,16 +108,8 @@ const SignIn = () => {
               <div className="flex justify-center text-sm">
                 <span className="text-gray-500">New to our platform?</span>{' '}
                 &nbsp;{' '}
-                <Link className="text-sm" href="/signup/recruiter">
+                <Link className="text-sm" href="/signup">
                   Create an account
-                </Link>
-              </div>
-
-              <div className="flex justify-center text-sm">
-                <span className="text-gray-500">Are you a jobseeker?</span>{' '}
-                &nbsp;{' '}
-                <Link className="text-sm" href="/signin/jobseeker">
-                  Log in to your jobseeker account
                 </Link>
               </div>
 

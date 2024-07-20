@@ -135,7 +135,7 @@ const SignUp: React.FC = () => {
                     {errors.confirmPassword.message}
                   </div>
                 )}
-                <div className="flex justify-between">
+                {/* <div className="flex justify-between">
                   <div className="flex">
                     <Checkbox />
                     <div className="text-sm text-gray-700 flex items-center">
@@ -147,7 +147,7 @@ const SignUp: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 <Button className="w-full" color="secondary" type="submit">
                   SIGN UP
@@ -156,15 +156,8 @@ const SignUp: React.FC = () => {
               <div className="flex justify-center text-sm">
                 <span className="text-gray-500">Already have an account?</span>
                 &nbsp; &nbsp;
-                <Link className="text-sm" href="/signin/jobseeker">
+                <Link className="text-sm" href="/signin">
                   Sign in instead
-                </Link>
-              </div>
-              <div className="flex justify-center text-sm">
-                <span className="text-gray-500">Are you a recruiter?</span>
-                &nbsp; &nbsp;
-                <Link className="text-sm" href="/signup/recruiter">
-                  Sign up your recruiter account
                 </Link>
               </div>
 
