@@ -4,7 +4,6 @@ import React from 'react';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import Image from 'next/image';
-import { Checkbox } from '@nextui-org/checkbox';
 import { Link } from '@nextui-org/link';
 import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -43,11 +42,8 @@ const SignUp: React.FC = () => {
     const signUpData = {
       ...data,
       password: hashedPassword,
-      role: 'JOB_SEEKER',
     };
     const result = await registerUser(signUpData);
-
-    console.log('##result', result);
     if (result) {
       reset();
       router.push('/');
@@ -135,20 +131,6 @@ const SignUp: React.FC = () => {
                     {errors.confirmPassword.message}
                   </div>
                 )}
-                {/* <div className="flex justify-between">
-                  <div className="flex">
-                    <Checkbox />
-                    <div className="text-sm text-gray-700 flex items-center">
-                      I agree to&nbsp;
-                      <span>
-                        <Link className="text-sm" href="#">
-                          privacy policy & terms
-                        </Link>
-                      </span>
-                    </div>
-                  </div>
-                </div> */}
-
                 <Button className="w-full" color="secondary" type="submit">
                   SIGN UP
                 </Button>

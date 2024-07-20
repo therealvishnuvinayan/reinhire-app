@@ -8,11 +8,13 @@ import { Checkbox } from '@nextui-org/checkbox';
 import { Link } from '@nextui-org/link';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { hash } from 'bcryptjs';
 
 import { EyeSlashFilledIcon } from '@/app/icons/EyeSlashFilledIcon';
 import { EyeFilledIcon } from '@/app/icons/EyeFilledIcon';
 import GoogleIcon from '@/app/icons/GoogleIcon';
 import LinkedinIcon from '@/app/icons/LinkedinIcon';
+import signInUser from '@/routes/api/signin';
 
 type Inputs = {
   email: string;
@@ -30,9 +32,22 @@ const SignIn = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log('##data', data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const hashedPassword = await hash(data.password, 10);
+    const signInData = {
+      ...data,
+      password: hashedPassword,
+    };
+    const result = await signInUser(signInData);
+    console.log('##result', result);
+    if (result) {
+      reset();
+      router.push('/');
+    }
+  };
 
   return (
     <>
@@ -100,7 +115,6 @@ const SignIn = () => {
                   className="w-full"
                   color="secondary"
                   type="submit"
-                  onClick={() => router.push('/')}
                 >
                   SIGN IN
                 </Button>

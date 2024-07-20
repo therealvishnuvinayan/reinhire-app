@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-interface registerUserProps {
+interface signInUserProps {
   email: string;
   password: string;
 }
 
-const registerUser = async (data: registerUserProps) => {
+const signInUser = async (data: signInUserProps) => {
   const { email, password } = data;
 
   try {
-    const response = await axios.post('/api/auth/register', {
+    const response = await axios.post('/api/auth/signin', {
       email,
       password,
     });
@@ -21,4 +21,4 @@ const registerUser = async (data: registerUserProps) => {
   }
 };
 
-export default registerUser;
+export default signInUser;
