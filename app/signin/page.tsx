@@ -30,11 +30,7 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm<Inputs>();
+  const { register, handleSubmit, reset } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const hashedPassword = await hash(data.password, 10);
     const signInData = {
