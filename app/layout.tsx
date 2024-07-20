@@ -7,6 +7,8 @@ import { Providers } from './providers';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import { ThemeSwitch } from '@/components/theme-switch';
+import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: {
@@ -42,27 +44,17 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <div className="relative flex flex-col h-screen">
-            <div className='flex justify-end mt-2 mr-2'>
-            <ThemeSwitch />
-            </div>
-          
-            {/* <Navbar /> */}
-            <main
-            // className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"
-            > 
-              <Providers>{children}</Providers>
+            <main>
+              <Providers>
+                <div className="flex">
+                  <Sidebar />
+                  <div className="flex-1">
+                    <Header />
+                    {children}
+                  </div>
+                </div>
+              </Providers>
             </main>
-            {/* <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
-              </Link>
-            </footer> */}
           </div>
         </Providers>
       </body>
