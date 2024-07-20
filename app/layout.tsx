@@ -36,7 +36,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
+          'min-h-[screen] bg-background font-sans antialiased',
           fontSans.variable,
         )}
       >
@@ -49,7 +49,7 @@ export default function RootLayout({
             {/* <Navbar /> */}
             <main
             // className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"
-            >
+            > 
               <Providers>{children}</Providers>
             </main>
             {/* <footer className="w-full flex items-center justify-center py-3">

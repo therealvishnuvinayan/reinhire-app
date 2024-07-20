@@ -21,7 +21,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex h-[85vh] items-center justify-center">
         <div className="flex flex-col">
           <div className="pt-12 pb-7 px-9 rounded-xl border">
             <div className="flex justify-center mb-6">
