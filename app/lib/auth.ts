@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (user && user.password === credentials.password) {
-          return { id: user.id, email: user.email, role: user.role };
+          return { id: user.id, email: user.email };
         }
 
         return null;
