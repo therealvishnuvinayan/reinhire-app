@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import Image from 'next/image';
 import { Checkbox } from '@nextui-org/checkbox';
 import { Link } from '@nextui-org/link';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { hash } from 'bcryptjs';
 
@@ -15,6 +15,9 @@ import { EyeFilledIcon } from '@/app/icons/EyeFilledIcon';
 import GoogleIcon from '@/app/icons/GoogleIcon';
 import LinkedinIcon from '@/app/icons/LinkedinIcon';
 import signInUser from '@/routes/api/signin';
+import Toast from '@/components/Toast';
+import { error } from 'console';
+
 
 type Inputs = {
   email: string;
@@ -26,6 +29,7 @@ const SignIn = () => {
   const placement = 'inside';
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const {
@@ -41,12 +45,16 @@ const SignIn = () => {
       ...data,
       password: hashedPassword,
     };
-    const result = await signInUser(signInData);
-    console.log('##result', result);
-    if (result) {
-      reset();
-      router.push('/');
-    }
+  
+      const result = await signInUser(signInData);
+      const { error } = result;
+      if (result.status === 201) {
+        reset();
+        router.push('/');
+      } else if(result.error) {
+        setError(result.error);
+      }
+    
   };
 
   return (
@@ -69,6 +77,7 @@ const SignIn = () => {
               <div className="text-sm text-gray-500 pb-2">
                 Please sign-in to your account and start the adventure
               </div>
+             { error && <Toast type="error" text={error} /> }
               <form
                 className="flex flex-col gap-4"
                 onSubmit={handleSubmit(onSubmit)}
@@ -111,11 +120,7 @@ const SignIn = () => {
                   </Link>
                 </div>
 
-                <Button
-                  className="w-full"
-                  color="secondary"
-                  type="submit"
-                >
+                <Button className="w-full" color="secondary" type="submit">
                   SIGN IN
                 </Button>
               </form>

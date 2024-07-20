@@ -15,9 +15,17 @@ const signInUser = async (data: signInUserProps) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.error(error);
-    throw new Error('Internal server error');
+  } catch (error: any) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return {
+        error: error.response.data.message,
+      }
+    } else {
+      console.error(error);
+      return {
+        error: 'Internal server error',
+      }
+    }
   }
 };
 
