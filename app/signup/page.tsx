@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import Image from 'next/image';
@@ -17,11 +17,15 @@ import GoogleIcon from '@/app/icons/GoogleIcon';
 import LinkedinIcon from '@/app/icons/LinkedinIcon';
 import signUpSchema from '@/utils/validations/authScheme';
 import registerUser from '@/routes/api/signup';
+import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti'
 
 const SignUp: React.FC = () => {
   const placement = 'inside';
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const { width, height } = useWindowSize()
   const router = useRouter();
 
   type Inputs = {
@@ -46,7 +50,11 @@ const SignUp: React.FC = () => {
     const result = await registerUser(signUpData);
     if (result) {
       reset();
-      router.push('/');
+      setShowConfetti(true)
+      setTimeout(() => {
+        router.push('/');
+    }, 3000);
+     
     }
   };
 
@@ -66,6 +74,8 @@ const SignUp: React.FC = () => {
             <div className="text-2xl font-bold text-[#4d4d4d] pb-2">
               Adventure starts here! 🚀
             </div>
+            {showConfetti && <Confetti  width={width}
+      height={height}/>}
             <div className="flex flex-col gap-4">
               <div className="text-sm text-gray-500 pb-2">
                 Please sign-up to your account and start the adventure
