@@ -6,7 +6,7 @@ import { Input } from '@nextui-org/input';
 import Image from 'next/image';
 import { Checkbox } from '@nextui-org/checkbox';
 import { Link } from '@nextui-org/link';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { hash } from 'bcryptjs';
 
@@ -16,8 +16,6 @@ import GoogleIcon from '@/app/icons/GoogleIcon';
 import LinkedinIcon from '@/app/icons/LinkedinIcon';
 import signInUser from '@/routes/api/signin';
 import Toast from '@/components/Toast';
-import { error } from 'console';
-
 
 type Inputs = {
   email: string;
@@ -35,9 +33,7 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
-    formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const hashedPassword = await hash(data.password, 10);
@@ -45,16 +41,16 @@ const SignIn = () => {
       ...data,
       password: hashedPassword,
     };
-  
-      const result = await signInUser(signInData);
-      const { error } = result;
-      if (result.status === 201) {
-        reset();
-        router.push('/');
-      } else if(result.error) {
-        setError(result.error);
-      }
-    
+
+    const result = await signInUser(signInData);
+    const { error } = result;
+
+    if (result.status === 201) {
+      reset();
+      router.push('/');
+    } else if (error) {
+      setError(error);
+    }
   };
 
   return (
@@ -77,7 +73,7 @@ const SignIn = () => {
               <div className="text-sm text-gray-500 pb-2">
                 Please sign-in to your account and start the adventure
               </div>
-             { error && <Toast type="error" text={error} /> }
+              {error && <Toast text={error} type="error" />}
               <form
                 className="flex flex-col gap-4"
                 onSubmit={handleSubmit(onSubmit)}

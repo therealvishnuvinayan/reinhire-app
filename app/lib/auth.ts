@@ -81,7 +81,6 @@ export const authOptions: NextAuthOptions = {
           await prisma.user.create({
             data: {
               email: user.email!,
-              role: 'JOB_SEEKER',
               name: user.name!,
               image: user.image!,
             },
@@ -91,7 +90,7 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
-    async jwt({ token, user }: { token: JWT; user?: NextAuthUser }) {
+    async jwt({ token }: { token: JWT; user?: NextAuthUser }) {
       // if (user) {
       //   token.id = user.id;
       //   token.role = user.role;
@@ -99,7 +98,7 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
-    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+    async redirect({ baseUrl }: { baseUrl: string }) {
       return baseUrl;
     },
   },

@@ -19,12 +19,13 @@ const signInUser = async (data: signInUserProps) => {
     if (error.response && error.response.data && error.response.data.message) {
       return {
         error: error.response.data.message,
-      }
+      };
     } else {
       console.error(error);
+
       return {
         error: 'Internal server error',
-      }
+      };
     }
   }
 };

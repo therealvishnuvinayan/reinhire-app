@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { compare } from 'bcryptjs';
 
 import prisma from '@/app/lib/prisma';
-import { compare } from 'bcryptjs';
 
 export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
     const user = await prisma.user.findUnique({
       where: { email },
     });
+
     if (!user || !user.password) {
       return NextResponse.json(
         { message: 'Invalid email or password' },
@@ -23,6 +24,7 @@ export async function POST(req: NextRequest) {
       );
     }
     const passwordMatch = await compare(password, user.password);
+
     if (!passwordMatch) {
       return NextResponse.json(
         { message: 'Incorrect password' },

@@ -10,6 +10,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { hash } from 'bcryptjs';
 import { signIn } from 'next-auth/react';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 
 import { EyeSlashFilledIcon } from '@/app/icons/EyeSlashFilledIcon';
 import { EyeFilledIcon } from '@/app/icons/EyeFilledIcon';
@@ -17,15 +19,13 @@ import GoogleIcon from '@/app/icons/GoogleIcon';
 import LinkedinIcon from '@/app/icons/LinkedinIcon';
 import signUpSchema from '@/utils/validations/authScheme';
 import registerUser from '@/routes/api/signup';
-import useWindowSize from 'react-use/lib/useWindowSize'
-import Confetti from 'react-confetti'
 
 const SignUp: React.FC = () => {
   const placement = 'inside';
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const [showConfetti, setShowConfetti] = useState(false);
-  const { width, height } = useWindowSize()
+  const { width, height } = useWindowSize();
   const router = useRouter();
 
   type Inputs = {
@@ -37,7 +37,6 @@ const SignUp: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(signUpSchema) });
@@ -48,13 +47,13 @@ const SignUp: React.FC = () => {
       password: hashedPassword,
     };
     const result = await registerUser(signUpData);
+
     if (result) {
       reset();
-      setShowConfetti(true)
+      setShowConfetti(true);
       setTimeout(() => {
         router.push('/');
-    }, 3000);
-     
+      }, 3000);
     }
   };
 
@@ -74,8 +73,7 @@ const SignUp: React.FC = () => {
             <div className="text-2xl font-bold text-[#4d4d4d] pb-2">
               Adventure starts here! 🚀
             </div>
-            {showConfetti && <Confetti  width={width}
-      height={height}/>}
+            {showConfetti && <Confetti height={height} width={width} />}
             <div className="flex flex-col gap-4">
               <div className="text-sm text-gray-500 pb-2">
                 Please sign-up to your account and start the adventure

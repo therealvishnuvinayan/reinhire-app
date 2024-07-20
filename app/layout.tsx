@@ -6,7 +6,6 @@ import { Providers } from './providers';
 
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
-import { ThemeSwitch } from '@/components/theme-switch';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 
