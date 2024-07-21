@@ -45,7 +45,7 @@ export default function RootLayout({
           <div className="relative flex flex-col h-screen">
             <main>
               <Providers>
-                <div className="flex">
+                <div className="flex h-screen">
                   <Sidebar />
                   <div className="flex-1">
                     <Header />
