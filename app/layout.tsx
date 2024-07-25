@@ -8,6 +8,7 @@ import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
+import ClientWrapper from '@/components/ClientWrapper';
 
 export const metadata: Metadata = {
   title: {
@@ -42,19 +43,21 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className="relative flex flex-col h-screen">
-            <main>
-              <Providers>
-                <div className="flex h-screen">
-                  <Sidebar />
-                  <div className="flex-1">
-                    <Header />
-                    {children}
+          <ClientWrapper>
+            <div className="first-letter:relative flex flex-col h-screen">
+              <main>
+                <Providers>
+                  <div className="flex h-screen">
+                    <Sidebar />
+                    <div className="flex-1">
+                      <Header />
+                      {children}
+                    </div>
                   </div>
-                </div>
-              </Providers>
-            </main>
-          </div>
+                </Providers>
+              </main>
+            </div>
+          </ClientWrapper>
         </Providers>
       </body>
     </html>
