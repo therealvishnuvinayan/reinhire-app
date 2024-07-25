@@ -7,7 +7,7 @@ import { Button, ButtonGroup } from '@nextui-org/button';
 import { sidebarMenus } from '@/app/content';
 
 const Sidebar = () => {
-  const [activeMenu, setActiveMenu] = useState('Menu1');
+  const [activeMenu, setActiveMenu] = useState('Dashboard');
 
   return (
     <div className="flex flex-col min-w-64">
@@ -23,7 +23,7 @@ const Sidebar = () => {
         {sidebarMenus.map((menu) => (
           <ButtonGroup key={menu.id}>
             <Button
-              className={`!rounded-l-lg w-full ${activeMenu === menu.name ? 'bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg' : 'bg-white'}`}
+              className={`!rounded-l-lg w-full mb-2 ${activeMenu === menu.name ? 'bg-primary-50 bg-gradient-to-tr from-primary-50 to-primary-100 text-white shadow-lg' : 'bg-backgroud'}`}
               radius="full"
               onClick={() => setActiveMenu(menu.name)}
             >
