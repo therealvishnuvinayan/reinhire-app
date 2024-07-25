@@ -16,6 +16,7 @@ import GoogleIcon from '@/app/icons/GoogleIcon';
 import LinkedinIcon from '@/app/icons/LinkedinIcon';
 import signInUser from '@/routes/api/signin';
 import Toast from '@/components/Toast';
+import { signIn } from 'next-auth/react';
 
 type Inputs = {
   email: string;
@@ -32,16 +33,10 @@ const SignIn = () => {
 
   const { register, handleSubmit, reset } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const hashedPassword = await hash(data.password, 10);
-    const signInData = {
-      ...data,
-      password: hashedPassword,
-    };
 
-    const result = await signInUser(signInData);
+    const result = await signInUser(data);
     const { error } = result;
-
-    if (result.status === 201) {
+    if (result) {
       reset();
       router.push('/');
     } else if (error) {
@@ -128,7 +123,12 @@ const SignIn = () => {
                 <span className="sign-in-divider text-gray-500 px-4">or</span>
               </div>
               <div className="flex justify-center space-x-4">
-                <GoogleIcon />
+              <button
+                  className="cursor-pointer bg-transparent border-none"
+                  onClick={() => signIn('google', { callbackUrl: '/' })}
+                >
+                  <GoogleIcon />
+                </button>
                 <LinkedinIcon />
               </div>
             </div>
