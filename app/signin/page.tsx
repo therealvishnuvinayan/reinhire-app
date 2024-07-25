@@ -33,9 +33,9 @@ const SignIn = () => {
 
   const { register, handleSubmit, reset } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-
     const result = await signInUser(data);
     const { error } = result;
+
     if (result) {
       reset();
       router.push('/');
@@ -123,7 +123,7 @@ const SignIn = () => {
                 <span className="sign-in-divider text-gray-500 px-4">or</span>
               </div>
               <div className="flex justify-center space-x-4">
-              <button
+                <button
                   className="cursor-pointer bg-transparent border-none"
                   onClick={() => signIn('google', { callbackUrl: '/' })}
                 >
