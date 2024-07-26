@@ -12,7 +12,7 @@ const Sidebar = () => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col min-w-64">
+    <div className="flex flex-col min-w-64 pr-6">
       <Image
         alt="login-logo"
         className="pt-8 pb-8 px-4"
