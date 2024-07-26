@@ -14,7 +14,7 @@ import {
 
 const Header = () => {
   return (
-    <div className="flex justify-end pr-4 py-2 items-center gap-3">
+    <div className="flex justify-end pr-4 pt-2 pb-12 items-center gap-3">
       <ThemeSwitch />
       <RiNotification4Line className="cursor-pointer w-6 h-6" />
       <Dropdown>
