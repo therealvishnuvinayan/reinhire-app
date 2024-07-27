@@ -17,6 +17,7 @@ import {
   jobTitles,
   keySkills,
 } from '@/app/content';
+import createInterview from '@/routes/api/interviews';
 
 const CreateInterview = () => {
   type Inputs = {
@@ -34,8 +35,9 @@ const CreateInterview = () => {
     setValue,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log('##data', data);
-  
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const response = await createInterview(data);
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit(onSubmit)}>

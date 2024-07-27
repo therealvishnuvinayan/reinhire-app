@@ -16,7 +16,6 @@ const registerUser = async (data: registerUserProps) => {
 
     return response.data;
   } catch (error) {
-    console.error(error);
     throw new Error('Internal server error');
   }
 };
