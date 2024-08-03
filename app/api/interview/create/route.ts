@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import prisma from '@/app/lib/prisma';
+import generateInterviewQuestions from '@/utils/openai/generateInterviewQuestions';
 
 export async function POST(req: NextRequest) {
   const { industry, job, experienceLevel, keySkills, jobDescription } =
@@ -14,6 +15,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const interviewQuestions = await generateInterviewQuestions({
+      industry,
+      job,
+      experienceLevel,
+      keySkills,
+      jobDescription,
+    });
+
     const interview = await prisma.interviews.create({
       data: {
         industry,
@@ -21,6 +30,7 @@ export async function POST(req: NextRequest) {
         experienceLevel,
         keySkills,
         jobDescription,
+        interviewQuestions,
       },
     });
 

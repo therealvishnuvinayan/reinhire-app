@@ -37,6 +37,7 @@ const CreateInterview = () => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const response = await createInterview(data);
+  };
 
   return (
     <div className="container">
