@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         experienceLevel,
         keySkills,
         jobDescription,
-        interviewQuestions,
+        // interviewQuestions, // need to add and fix build error
       },
     });
 

@@ -16,9 +16,10 @@ import {
 } from '@nextui-org/react';
 
 import { columns, users } from './data';
-import { EyeIcon } from './EyeIcon';
-import { EditIcon } from './EditIcon';
-import { DeleteIcon } from './DeleteIcon';
+
+import { EyeIcon } from '@/icons/EyeIcon';
+import { EditIcon } from '@/icons/EditIcon';
+import { DeleteIcon } from '@/icons/DeleteIcon';
 
 const statusColorMap: Record<string, ChipProps['color']> = {
   active: 'success',
